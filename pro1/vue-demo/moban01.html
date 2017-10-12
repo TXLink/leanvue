@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+    <style>
+        .class1 {
+            background: #444;
+            color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-html="message"></div>
+        <p>{{testmsg}}</p>
+        <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+        <br><br>
+        <div v-bind:class="{'class1':class1}">
+            directiva v-bind:class
+        </div>
+        <p>表达式</p>
+        {{5-9}}<br /> {{class1?'ture':'false'}}
+        <br /> {{testmsg.split('').reverse().join('')}}
+        <br />
+        <div v-bind:id="'list-'+id">hello world!</div>
+        <p>指令</p>
+        <h1 v-if="see">hello lm not hide</h1>
+        <template v-if="class1">
+            <h1>指令vue测试</h1>
+            <p>内容1</p>
+            <p>内容2</p>
+        </template>
+        <p>参数</p>
+        <pre>
+            <a v-bind:href="url" target="_blank">皮皮虾，去百度</a>
+        </pre>
+        <p> v-model 指令来实现双向数据绑定</p>
+        <p>你输入了:{{inputMessage}}</p>
+        <input v-model="inputMessage" />
+        <button v-on:click="reverseInputMsg">反转字符串</button><br/>
+        <p>过滤器</p>
+        {{inputMessage|capitalize}}
+        <P>---if else----</p>
+        <div v-if="type==='A'">A</div>
+        <div v-else-if="type==='B'">B</div>
+        <div v-else-if="type==='C'">C</div>
+        <div v-else>Not A/B/C</div>
+        <P>---v-show----</p>
+        <h1 v-show="class1">HELLO!(show)</h1>
+        <h1 v-show="ok">Hello!</h1>
+
+    </div>
+    <script>
+        let vue = new Vue({
+            el: "#app",
+            data: {
+                message: '<h1>菜鸟教程</h1>',
+                testmsg: 'hello vue',
+                class1: false,
+                id: 111,
+                see: true,
+                url: "https://www.baidu.com",
+                inputMessage: "",
+                type: this.inputMessage,
+                ok: false
+            },
+            methods: {
+                reverseInputMsg: function() {
+                    this.inputMessage = this.inputMessage.split('').reverse().join('')
+                }
+            },
+            filters: {
+                capitalize: function(value) {
+                    if (!value) return '';
+                    value = value.toString();
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

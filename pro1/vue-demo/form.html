@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>input 元素：</p>
+        <input v-model="message" placeholder="编辑" />
+        <p>消息是:{{message}}</p>
+        <p>textarea元素：</p>
+        <pre>{{message2}}</pre>
+        <textarea v-model="message2" placeholder="多行文本输入...."></textarea>
+        <p>单个复选框：</p>
+        <input type="checkbox" id="checkbox" v-model="checkedd" /><label for="checkbox">{{ checkedd }}</label>
+
+        <p>多个复选框：</p>
+        <input type="checkbox" id="runoob" value="Runoob" v-model="checkedNames">
+        <label for="runoob">Runoob</label>
+        <input type="checkbox" id="google" value="Google" v-model="checkedNames">
+        <label for="google">Google</label>
+        <input type="checkbox" id="taobao" value="Taobao" v-model="checkedNames">
+        <label for="taobao">taobao</label>
+        <br>
+        <span>选择的值为: {{ checkedNames }}</span>
+        <br>
+        <input type="radio" id="runoob1" value="0" v-model="picked">
+        <label for="runoob1">Runoob</label>
+        <br>
+        <input type="radio" id="google1" value="1" v-model="picked">
+        <label for="google1">Google</label>
+        <br>
+        <span>选中值为: {{ picked }}</span>
+        <br>
+        <select v-model="selected" name="fruit">
+    <option value="">选择一个网站</option>
+    <option value="www.runoob.com">Runoob</option>
+    <option value="www.google.com">Google</option>
+  </select>
+
+        <div id="output">
+            选择的网站是: {{selected}}
+        </div>
+    </div>
+
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello world',
+                message2: '12121111',
+                checkedd: true,
+                checkedNames: [],
+                picked: "",
+                selected: ''
+
+            }
+        })
+    </script>
+</body>
+
+</html>

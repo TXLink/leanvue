@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 事件绑定</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="count+=1">点击次数 {{count}}</button>
+        <br/> 点击次数 {{count}}
+        <br/>
+        <button @click="greet">greet</button>
+        <button @click="say('hi')">say hi</button>
+        <a @click.stop="test">test </a>
+
+        <input @keyup.enter="test" />
+    </div>
+
+    <script>
+        let app = new Vue({
+                el: "#app",
+                data: {
+                    count: 0
+                },
+                methods: {
+                    greet: function(event) {
+                        alert("Hello " + this.count);
+                        if (event) {
+                            alert(event.target.tagName);
+                        }
+                    },
+                    say: function(str) {
+                        alert(str);
+                    },
+                    test: function() {
+                        alert("str");
+                    }
+                }
+            })
+            //app.greet();
+    </script>
+</body>
+
+</html>

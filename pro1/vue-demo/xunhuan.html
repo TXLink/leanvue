@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>原始字符串: {{ msg }}</p>
+        <p>计算后反转字符串:(computed) {{ reversedMsg }}
+
+        </p>
+        <button @click="reversedMsg2">反转</button>
+        <input v-model="msg" />
+        <ol>
+            <li v-for="site in sites">
+                {{site.name}}
+            </li>
+        </ol>
+        <p>模板中使用</p>
+        <ul>
+            <template v-for="site in sites">
+                <li>{{site.name}}</li>
+                <li>-------------</li>
+           </template>
+        </ul>
+        <p>v-for 迭代对象</p>
+        <ul>
+            <li v-for="value in object">
+                {{value}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(value,key,index) in object">
+                {{index+1}}、 {{key}}：{{value}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="n in 10">
+                {{n}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        let vue = new Vue({
+                el: "#app",
+                data: {
+                    sites: [{
+                        name: 'baidu'
+                    }, {
+                        name: "google"
+                    }, {
+                        name: "bing"
+                    }],
+                    object: {
+                        name: '菜鸟教程',
+                        url: 'http://www.runoob.com',
+                        slogan: '学的不仅是技术，更是梦想！'
+                    },
+                    msg: '',
+                    name: 'google',
+                    url: 'https://www.google.com'
+
+                },
+                computed: {
+                    reversedMsg: function() {
+                        return this.msg.split('').reverse().join('')
+                    },
+                    site: {
+                        //getter
+                        get: function() {
+                            return this.name + ' ' + this.url
+                        },
+                        //setter
+                        set: function(newValue) {
+                            var names = newValue.split(' ')
+                            this.name = names[0]
+                            this.url = names[names.length - 1]
+                        }
+
+                    }
+                },
+                methods: {
+                    reversedMsg2: function() {
+                        this.msg = this.msg.split('').reverse().join('');
+                    }
+                }
+
+            })
+            //vue.site = "cese http://ceshi.com";
+        alert(vue.name + "--" + vue.url);
+    </script>
+</body>
+
+</html>
